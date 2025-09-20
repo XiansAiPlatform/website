@@ -8,7 +8,7 @@ WEBAPP_RG=${RESOURCE_GROUP:-"rg-xians-public-app"}
 LOCATION=${LOCATION:-"westeurope"}
 TAGS=${TAGS:-"project=xians-public-app environment=prod"}
 SKU=${UI_SKU:-"Free"}
-SUBSCRIPTION=${AZ_SUBSCRIPTION:-""}
+SUBSCRIPTION=${AZ_SUBSCRIPTION:-"XiansAi Prod"}
 # Vite defaults to dist for output
 APP_LOCATION="/public-app"
 OUTPUT_LOCATION=${OUTPUT_LOCATION:-"dist"}

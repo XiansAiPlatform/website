@@ -37,88 +37,107 @@ export default function Home() {
       file: 'Program.cs',
       code: `
 
-      // create the agent team
-      var agentTeam = new AgentTeam("Percy");
+      // Create the agent team with temporal.io workflow engine
+      var agentTeam = new AgentTeam("SalesProspectingTeam");
       
-      // add the scheduler flow
-      var schedulerBot = agentTeam.AddAgent<SchedulerBot>();
-      schedulerBot.SetScheduleProcessor<SchedulerProcessor>(processInWorkflow:true, startAutomatically: true, runAtStart:true);
-      schedulerBot.AddActivities<ProspectingActivities>(new ProspectingActivities());
+      // Scheduler agent with fault-tolerant execution
+      var schedulerAgent = agentTeam.AddAgent<SchedulerBot>();
+      schedulerAgent.SetScheduleProcessor<SchedulerProcessor>(
+          processInWorkflow: true, 
+          startAutomatically: true, 
+          runAtStart: true
+      );
+      schedulerAgent.AddActivities<ProspectingActivities>();
       
-      // Article agent
-      var articleAgent = agentTeam.AddAgent<ArticleFlow>();
-      articleAgent.AddActivities<ArticleFlowActivities>(new ArticleFlowActivities());
+      // Content generation agent
+      var contentAgent = agentTeam.AddAgent<ContentFlow>();
+      contentAgent.AddActivities<ContentFlowActivities>();
       
-      // add the assistant agent
+      // Interactive assistant with MCP tools
       var assistantAgent = agentTeam.AddAgent<InteractionBot>();
-      assistantAgent.AddCapabilities(typeof(PercyCapabilities));
+      assistantAgent.AddCapabilities(typeof(SalesCapabilities));
       
-      // add the web agent
-      var webAgent = agentTeam.AddAgent<WebBot>();
-      webAgent.AddCapabilities(typeof(FirecrawlCapability));
-      webAgent.AddCapabilities(typeof(GoogleSearchCapability));
-      webAgent.AddKernelModifier(new PlayWrightMCP());
+      // Web research agent with MCP integration
+      var webAgent = agentTeam.AddAgent<WebResearchBot>();
+      webAgent.AddKernelModifier(new FirecrawlMCP());
+      webAgent.AddKernelModifier(new GoogleSearchMCP());
+      webAgent.AddKernelModifier(new PlaywrightMCP());
       
-      // reporter agent
-      var reporterAgent = agentTeam.AddAgent<ReporterBot>();
+      // Reporting agent with Office 365 integration
+      var reporterAgent = agentTeam.AddAgent<ReportingBot>();
       reporterAgent.AddKernelModifier(new MicrosoftO365MCP());
       reporterAgent.AddKernelModifier(new PdfGeneratorMCP());
       
-      // run the agent team
+      // Run with enterprise-grade reliability
       await agentTeam.RunAsync();
     `,
     },
     agentOne: {
-      file: 'WebAgent.cs',
+      file: 'WebResearchAgent.cs',
       code: `
 
-      [Workflow("Percy: Web Agent")]
-      public class WebAgent : FlowBase
+      [Workflow("Web Research Agent")]
+      public class WebResearchAgent : FlowBase
       {
-          public WebAgent()
+          public WebResearchAgent()
           {
-              SystemPrompt = @"You are Percy's WebBot, a specialized AI assistant equipped 
-              with comprehensive web research, scraping, and automation capabilities. 
-              Your primary mission is to help users gather information from the web, e
-              xtract content from websites, and perform automated web interactions.
+              SystemPrompt = @"You are a specialized web research agent equipped 
+              with MCP tools for comprehensive data gathering and analysis. 
+              Your mission is to gather, process, and extract insights from web sources
+              with fault-tolerant execution powered by temporal.io.
       
-              ## Your Capabilities
+              ## Your MCP Capabilities
+              - Firecrawl for web scraping
+              - Playwright for browser automation  
+              - Google Search for discovery
+              - Content analysis and extraction
               ...";
           }
           
-      
           [WorkflowRun]
           public async Task Run()
           {
+              // Initialize with durable workflow execution
               await InitConversation();
+              
+              // Handle long-running research tasks
+              await ProcessResearchQueue();
           }
       }
       
     `,
     },
     agentTwo: {
-      file: 'PercyCapabilities.cs',
+      file: 'SalesCapabilities.cs',
       code: `
- public class PercyCapabilities
+ public class SalesCapabilities
 {
-    [Capability("Extract all article links from a source webpage")]
-    [Parameter("sourceUrl", "URL of the source webpage to extract article links from")]
-    [Returns("List of article URLs found on the source page")]
-    public async Task<List<Uri>> ExtractArticleLinks(Uri sourceUrl)
+    [Capability("Research prospect company information")]
+    [Parameter("companyDomain", "Domain of the company to research")]
+    [Returns("Comprehensive company research data")]
+    public async Task<CompanyResearch> ResearchCompany(string companyDomain)
     {
-        var instruction = @$"
-        page url: {sourceUrl}
-        Extract all the article links from the above page.
-        Return the links comma separated.
-        Do not return any other text.
-
-        First try/retry with firecrawl scraping tools. If fails try playwright tools. If fails return text 'ERROR: <reason>'.
+        var instruction = $@"
+        Research company: {companyDomain}
+        
+        Gather:
+        - Company overview and recent news
+        - Key personnel and decision makers  
+        - Technology stack and tools used
+        - Recent funding or growth indicators
+        
+        Use MCP tools: Firecrawl for scraping, Google Search for discovery.
+        Return structured data for sales outreach.
         ";
 
-        // Agent2Agent communication
-        var response = await MessageHub.Agent2Agent.SendChat(typeof(WebAgent), instruction);
+        // Agent-to-Agent communication with fault tolerance
+        var response = await MessageHub.Agent2Agent.SendChatWithRetry(
+            typeof(WebResearchAgent), 
+            instruction,
+            retryPolicy: RetryPolicy.DefaultExponential
+        );
 
-        return response.Text.Split(",").ToList();
+        return JsonSerializer.Deserialize<CompanyResearch>(response.Text);
       }
       
       ...
@@ -129,6 +148,7 @@ export default function Home() {
 
   const featureCodeExamples = [
     `
+// Temporal.io powered durability - workflows survive restarts
 await Workflow.DelayAsync(TimeSpan.FromDays(365));
 // Your workflow continues exactly where it left off after a year`,
 
@@ -136,22 +156,29 @@ await Workflow.DelayAsync(TimeSpan.FromDays(365));
 public async Task UserApproved(string comment)
 {
     approval = true;
-    // User responded to the question posted on chat
-    // Lets continue the execution
+    approvalComment = comment;
+    // User responded via chat interface
+    // Continue workflow execution
 }
 
-// Workflow waits for user to approve
+// Wait for human-in-the-loop approval
 await Workflow.WaitConditionAsync(() => approval);`,
 
     `
-// Run the flow executers on any number of machines/containers
-await flowRunner.RunFlowAsync(flowInfo);`,
+// Horizontal scaling across multiple machines/containers
+await flowRunner.RunFlowAsync(flowInfo);
+// Temporal.io handles load balancing and task distribution`,
 
-    `// Fault Tolerant Through Retry Policy
-RetryPolicy = new() { MaximumInterval = TimeSpan.FromSeconds(60) },`,
+    `// Enterprise-grade fault tolerance with exponential backoff
+RetryPolicy = new() { 
+    MaximumInterval = TimeSpan.FromSeconds(60),
+    BackoffCoefficient = 2.0,
+    MaximumAttempts = 5 
+},`,
 
-    `// Simply use a variables to store the workflow state
-var newBlogPosts = new List<string>();`,
+    `// Workflow state persisted automatically by temporal.io
+var prospectingResults = new List<ProspectData>();
+var processedCompanies = new HashSet<string>();`,
   ];
 
   const handleTabClick = (index) => setActiveFeatureTab(index);
@@ -206,7 +233,7 @@ var newBlogPosts = new List<string>();`,
             </a>
                     </div>
 
-          <h1 style={{ wordSpacing: '0.2em' }}>Build Intelligent AI Agents That Work as a Team</h1>
+          <h1 style={{ wordSpacing: '0.2em' }}>Enterprise-Grade AI Agent Development Kit</h1>
 
                         <div className="home-cta-buttons">
             <button className="home-btn home-btn-primary" onClick={() => window.open('https://github.com/XiansAiPlatform', '_blank')}>
@@ -219,7 +246,7 @@ var newBlogPosts = new List<string>();`,
                         </div>
 
           <p className="home-hero-subtitle">
-            The open-source platform for creating, deploying, and managing sophisticated AI agent workflows with enterprise-grade reliability.
+            Build fault-tolerant AI agent workflows with temporal.io reliability. Platform-agnostic architecture with MCP tool integration and multi-agent coordination.
           </p>
 
           <div style={{ marginTop: '2rem' }}>
@@ -256,9 +283,9 @@ var newBlogPosts = new List<string>();`,
             <h2>Agents in a Team</h2>
             <p className="home-agent-composition-subtitle">Case study – Sales Prospecting Agent Team</p>
             <p>
-              Modern AI workflows require multiple specialized agents working in coordination. Agents communicate through 
-              standardized interfaces like <strong>MCPs (Model Context Protocol)</strong> for tool integration and 
-              <strong> A2A (Agent-to-Agent)</strong> interactions for seamless handoffs between different capabilities.
+              Enterprise AI workflows require specialized agents working in coordination. Built on <strong>temporal.io</strong> for 
+              fault-tolerant execution, agents communicate through <strong>MCP (Model Context Protocol)</strong> for tool integration and 
+              <strong>Agent-to-Agent</strong> interactions for seamless handoffs between different capabilities.
             </p>
           </div>
           <div className="home-agent-composition-visual">
@@ -271,12 +298,12 @@ var newBlogPosts = new List<string>();`,
         <div className="home-code-demo-content">
           <div className="home-code-demo-text">
             <h2>Create Your First Multi-Agent Team</h2>
-            <p>Develop powerful AI workflows in minutes. Here's how to build a sales prospecting agent team:</p>
+            <p>Build enterprise-grade AI workflows with temporal.io reliability. Here's how to create a fault-tolerant sales prospecting agent team:</p>
             <div className="repo-activity-graph" title="Repository activity" />
             <ul className="home-code-demo-points">
-              <li>Define and reuse specialized agents for different tasks</li>
-              <li>Create a flow that coordinates between agents</li>
-              <li>Execute complex tasks in a durable, fault tolerant manner</li>
+              <li>Define specialized agents with MCP tool integration</li>
+              <li>Coordinate Agent-to-Agent communication workflows</li>
+              <li>Execute with temporal.io fault tolerance and durability</li>
             </ul>
           </div>
           <div className="home-code-demo-box">
@@ -327,9 +354,9 @@ var newBlogPosts = new List<string>();`,
           </div>
 
           <div className="home-feature-card-medium">
-            <h3>Enterprise-Grade Reliability</h3>
+            <h3>Temporal.io Workflow Engine</h3>
             <p>
-              Build dependable AI workflows without infrastructure complexity. Focus on business logic while we handle durability, scalability, and fault tolerance.
+              Built on temporal.io for enterprise-grade reliability. Workflows survive restarts, handle failures gracefully, and scale horizontally across your infrastructure.
             </p>
             <div className="home-feature-code">
               <div className="home-feature-languages">
@@ -346,17 +373,19 @@ var newBlogPosts = new List<string>();`,
           </div>
 
           <div className="home-feature-card-medium">
-            <h3>Accelerate Development with Ready-Made Agent Tools</h3>
-            <p>Create complex workflows using our comprehensive library of open-source agent tools.</p>
+            <h3>MCP Tool Ecosystem Integration</h3>
+            <p>Leverage the growing MCP (Model Context Protocol) ecosystem with seamless tool integration for enterprise workflows.</p>
             <div className="home-feature-code">
               <SyntaxHighlighter language="csharp" style={vscDarkPlus}>
                 {`
-[Agents("xiansai-agent/llm-completion")]  
-[Agents("xiansai-agent/web-scraper")]  
-[Agents("xiansai-agent/web-search")]  
-[Agents("xiansai-agent/ms-teams")]  
-[Agents("xiansai-agent/O365-planner")]  
-// And many more...
+// MCP tools integrate seamlessly
+webAgent.AddKernelModifier(new FirecrawlMCP());
+webAgent.AddKernelModifier(new GoogleSearchMCP());
+webAgent.AddKernelModifier(new PlaywrightMCP());
+
+reporterAgent.AddKernelModifier(new MicrosoftO365MCP());
+reporterAgent.AddKernelModifier(new PdfGeneratorMCP());
+// Extensive MCP ecosystem support...
 `}
               </SyntaxHighlighter>
             </div>
@@ -447,8 +476,8 @@ var newBlogPosts = new List<string>();`,
             <section className="home-comparison">
         <div className="home-comparison-content">
           <div className="home-comparison-text">
-            <h2>ADK Platform Comparison</h2>
-            <p>See how Xians.ai compares to other AI agent development platforms:</p>
+            <h2>Enterprise Agent Platform Comparison</h2>
+            <p>See how Xians.ai compares to other enterprise AI agent development platforms:</p>
           </div>
           <div className="home-comparison-table-container">
             <table className="home-comparison-table">
@@ -456,137 +485,94 @@ var newBlogPosts = new List<string>();`,
                 <tr>
                   <th></th>
                   <th>Xians.ai</th>
-                  <th>Google ADK</th>
-                  <th>Rowboat</th>
-                  <th>OpenAI Agent SDK</th>
+                  <th>Other Agent Kits</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Hub & Spoke Agent Handoffs</td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                </tr>
-                <tr>
-                  <td>P2P Handoffs between Agents</td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                </tr>
-                <tr>
-                  <td>Deterministic Workflow Orchestration</td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                </tr>
-                <tr>
-                  <td>Generative Workflow Orchestration</td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
+                  <td>Multi-Agent Coordination</td>
                   <td><span className="comparison-check">✓</span></td>
                   <td><span className="comparison-check">✓</span></td>
                 </tr>
                 <tr>
-                  <td>Long-running Process Automation</td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                </tr>
-                <tr>
-                  <td>Functions + MCP Tools</td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
+                  <td>Agent-to-Agent Communication</td>
                   <td><span className="comparison-check">✓</span></td>
                   <td><span className="comparison-check">✓</span></td>
                 </tr>
                 <tr>
-                  <td>Event-driven Coordination</td>
+                  <td>Temporal.io Workflow Engine</td>
                   <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
+                  <td><span className="comparison-question">?</span></td>
                 </tr>
                 <tr>
-                  <td>Multi-tenancy</td>
+                  <td>Durable Workflow Execution</td>
                   <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
+                  <td><span className="comparison-question">?</span></td>
                 </tr>
                 <tr>
-                  <td>Open Source</td>
+                  <td>Long-running Process Support</td>
                   <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
+                  <td><span className="comparison-question">?</span></td>
                 </tr>
                 <tr>
-                  <td>No Vendor Lock-in</td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                </tr>
-                <tr>
-                  <td>Agent Visualization</td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                </tr>
-                <tr>
-                  <td>Multi-Cloud Deployment</td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-check">✓</span></td>
+                  <td>MCP Tool Integration</td>
                   <td><span className="comparison-check">✓</span></td>
                   <td><span className="comparison-check">✓</span></td>
                 </tr>
                 <tr>
-                  <td>Enterprise-grade Robustness</td>
+                  <td>Event-driven Architecture</td>
                   <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
+                  <td><span className="comparison-question">?</span></td>
                 </tr>
                 <tr>
-                  <td>Agent Management Portal</td>
+                  <td>Multi-tenancy Support</td>
                   <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
+                  <td><span className="comparison-question">?</span></td>
                 </tr>
                 <tr>
-                  <td>Prompt/Knowledge Base Management</td>
+                  <td>Platform Agnostic</td>
                   <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                </tr>
-                <tr>
-                  <td>Agent Execution History</td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                </tr>
-                <tr>
-                  <td>Agent Tracing & Logging</td>
-                  <td><span className="comparison-check">✓</span></td>
-                  <td><span className="comparison-x">×</span></td>
-                  <td><span className="comparison-x">×</span></td>
                   <td><span className="comparison-check">✓</span></td>
                 </tr>
                 <tr>
-                  <td>Rapid Agent Generation</td>
+                  <td>Enterprise Fault Tolerance</td>
+                  <td><span className="comparison-check">✓</span></td>
+                  <td><span className="comparison-question">?</span></td>
+                </tr>
+                <tr>
+                  <td>Workflow Visualization</td>
+                  <td><span className="comparison-check">✓</span></td>
+                  <td><span className="comparison-question">?</span></td>
+                </tr>
+                <tr>
+                  <td>Self-hosted Deployment</td>
                   <td><span className="comparison-check">✓</span></td>
                   <td><span className="comparison-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Workflow State Persistence</td>
                   <td><span className="comparison-check">✓</span></td>
+                  <td><span className="comparison-question">?</span></td>
+                </tr>
+                <tr>
+                  <td>Management Portal</td>
                   <td><span className="comparison-check">✓</span></td>
+                  <td><span className="comparison-question">?</span></td>
+                </tr>
+                <tr>
+                  <td>Prompt Base Management</td>
+                  <td><span className="comparison-check">✓</span></td>
+                  <td><span className="comparison-question">?</span></td>
+                </tr>
+                <tr>
+                  <td>Execution History & Tracing</td>
+                  <td><span className="comparison-check">✓</span></td>
+                  <td><span className="comparison-question">?</span></td>
+                </tr>
+                <tr>
+                  <td>Horizontal Scaling</td>
+                  <td><span className="comparison-check">✓</span></td>
+                  <td><span className="comparison-question">?</span></td>
                 </tr>
               </tbody>
             </table>
@@ -618,3 +604,4 @@ var newBlogPosts = new List<string>();`,
         </div>
     );
 }
+
