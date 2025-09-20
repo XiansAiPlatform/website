@@ -387,6 +387,7 @@ body {
   background: transparent;
   color: var(--home-text-secondary);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  outline: none;
 }
 
 .home-feature-language:hover {
@@ -399,6 +400,12 @@ body {
   color: white;
   border-color: transparent;
   box-shadow: 0 2px 8px rgba(14, 165, 233, 0.25);
+}
+
+.home-feature-language:focus,
+.home-feature-language:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .home-feature-language:hover:not(.active) {
@@ -756,6 +763,7 @@ body {
   color: var(--home-text-secondary);
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
+  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -768,6 +776,12 @@ body {
 .home-tab-button.active {
   color: var(--home-primary);
   border-bottom: 2px solid var(--home-primary);
+}
+
+.home-tab-button:focus,
+.home-tab-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .home-feature-content {
@@ -1245,6 +1259,7 @@ body {
   font-size: 0.9rem;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
+  outline: none;
 }
 
 .home-code-tab:hover {
@@ -1254,6 +1269,17 @@ body {
 .home-code-tab.active {
   color: var(--home-primary);
   border-bottom: 2px solid var(--home-primary);
+}
+
+.home-code-tab:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.home-code-demo button:focus,
+.home-code-demo button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .home-code-header {
@@ -1991,6 +2017,7 @@ body {
   font-size: 0.9rem;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
+  outline: none;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -3059,6 +3086,7 @@ h1, h2, h3 {
   font-size: 0.9rem;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
+  outline: none;
   white-space: nowrap;
   flex-shrink: 0;
 }
