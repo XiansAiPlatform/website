@@ -121,12 +121,12 @@ The repository includes GitHub Actions workflows for automatic deployment on ver
 
 #### Available Workflows:
 
-- **`deploy-on-tag.yml`** - Uses Azure's official GitHub Action (recommended)
-- **`deploy-on-tag-with-scripts.yml`** - Uses your custom deployment scripts
+- **`deploy-on-tag.yml`** - Uses Azure's official GitHub Action (active, recommended)
 
 #### Tag-Based Deployment Workflow:
 
 1. **Make your changes** and commit them:
+
    ```bash
    git add .
    git commit -m "Your changes"
@@ -134,6 +134,7 @@ The repository includes GitHub Actions workflows for automatic deployment on ver
    ```
 
 2. **Create a version tag** (use semantic versioning):
+
    ```bash
    git tag v1.0.0        # Major release
    git tag v1.1.0        # Minor update
@@ -141,6 +142,7 @@ The repository includes GitHub Actions workflows for automatic deployment on ver
    ```
 
 3. **Push the tag** to trigger deployment:
+
    ```bash
    git push origin v1.0.0
    ```
