@@ -16,6 +16,7 @@ These scripts provision and manage an Azure Static Web App for the Vite React ap
 - `swa-delete.sh`: Deletes the Static Web App and optionally the resource group
 - `swa-domain.sh`: Manages custom domain configuration (add/remove/validate)
 - `swa-migrate.sh`: Finds existing deployments and handles domain migration
+- `setup-github-secret.sh`: Retrieves deployment token and shows GitHub secret setup instructions
 - Root-level `staticwebapp.config.json`: SPA fallback and headers
 
 ### Defaults and overrides
@@ -31,6 +32,30 @@ Environment variables you can override when running scripts:
 - `CUSTOM_DOMAIN` (default: `xians.ai`)
 
 ### Usage
+
+#### 🚀 Automated Deployment (Recommended)
+
+**Deploy via Git Tags:**
+
+Once GitHub Actions is set up, deployment is as simple as:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+This will automatically:
+- ✅ Build your React application
+- ✅ Deploy to Azure Static Web Apps
+- ✅ Create a GitHub release
+- ✅ Update your live site
+
+**First-time setup:**
+1. Run `./setup-github-secret.sh` to get your deployment token
+2. Add the token as `AZURE_STATIC_WEB_APPS_API_TOKEN` secret in GitHub
+3. Push your first version tag!
+
+#### 🛠️ Manual Deployment
 
 **Quick Start - Complete Deployment:**
 
@@ -82,11 +107,56 @@ cd scripts
 
 The script outputs `AZURE_STATIC_WEB_APPS_API_TOKEN`. Save it for CI/CD.
 
-### GitHub Actions setup (optional)
+### GitHub Actions setup
 
-1. In GitHub repo, go to Settings → Secrets and variables → Actions.
-2. Add a new secret named `AZURE_STATIC_WEB_APPS_API_TOKEN` with the token from `swa-create.sh`.
-3. Use an action like:
+The repository includes GitHub Actions workflows for automatic deployment on version tags.
+
+#### Quick Setup:
+
+1. **Get deployment token**: `./setup-github-secret.sh`
+2. **Add GitHub secret**: 
+   - Go to GitHub repo → Settings → Secrets and variables → Actions
+   - Add secret named `AZURE_STATIC_WEB_APPS_API_TOKEN` with the token from step 1
+3. **Deploy**: Create and push a version tag (e.g., `git tag v1.0.0 && git push origin v1.0.0`)
+
+#### Available Workflows:
+
+- **`deploy-on-tag.yml`** - Uses Azure's official GitHub Action (recommended)
+- **`deploy-on-tag-with-scripts.yml`** - Uses your custom deployment scripts
+
+#### Tag-Based Deployment Workflow:
+
+1. **Make your changes** and commit them:
+   ```bash
+   git add .
+   git commit -m "Your changes"
+   git push
+   ```
+
+2. **Create a version tag** (use semantic versioning):
+   ```bash
+   git tag v1.0.0        # Major release
+   git tag v1.1.0        # Minor update
+   git tag v1.1.1        # Patch/bugfix
+   ```
+
+3. **Push the tag** to trigger deployment:
+   ```bash
+   git push origin v1.0.0
+   ```
+
+4. **Monitor deployment** in GitHub Actions tab - your site will be automatically updated!
+
+#### Tag Naming Conventions:
+
+- **v1.0.0** - Major version (breaking changes)
+- **v1.1.0** - Minor version (new features, backward compatible)
+- **v1.1.1** - Patch version (bug fixes)
+- **v2.0.0-beta.1** - Pre-release versions
+
+#### Manual GitHub Actions setup (alternative):
+
+If you prefer to set up manually:
 
 ```yaml
 name: Deploy Public App
