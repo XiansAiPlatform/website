@@ -16,11 +16,11 @@
       content="An open-source control plane for AI agents. Tenants, prompts, conversations, webhooks, human tasks, schedules, logs, and metrics. Self-hosted."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://xiansaiplatform.github.io/" />
+    <meta property="og:url" content="https://xiansaiplatform.github.io/website/" />
 
     <link
       rel="icon"
-      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop offset='0' stop-color='%237c5cff'/><stop offset='1' stop-color='%2300d4b8'/></linearGradient></defs><rect width='64' height='64' rx='14' fill='%230b0d12'/><path d='M16 18 L32 32 L16 46 M48 18 L32 32 L48 46' fill='none' stroke='url(%23g)' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/></svg>"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='8' fill='%230b0d12'/><path d='M16 18 L32 32 L16 46 M48 18 L32 32 L48 46' fill='none' stroke='%237c5cff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/></svg>"
     />
 
     <link rel="stylesheet" href="style.css" />
@@ -69,26 +69,59 @@
             <span class="nav-toggle-bars" aria-hidden="true"></span>
           </button>
           <ul id="primary-nav" class="nav-list" data-nav-list>
-            <li><a href="#capabilities">Capabilities</a></li>
-            <li><a href="#architecture">Architecture</a></li>
-            <li><a href="#why">Why ACP</a></li>
+            <li><a href="#capabilities" data-nav-link>Capabilities</a></li>
+            <li><a href="#studio" data-nav-link>Studio</a></li>
+            <li><a href="#architecture" data-nav-link>Architecture</a></li>
+            <li><a href="#platform" data-nav-link>Platform</a></li>
+            <li><a href="#why" data-nav-link>Why ACP</a></li>
+            <li class="nav-divider" role="presentation" aria-hidden="true"></li>
             <li>
               <a
+                class="nav-external"
                 href="https://xiansaiplatform.github.io/XiansAi.Docs/"
                 target="_blank"
                 rel="noopener"
-                >Docs</a
               >
+                Docs
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7 17 17 7M9 7h8v8"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
             </li>
             <li>
               <a
+                class="nav-external nav-github"
                 href="https://github.com/XiansAiPlatform"
                 target="_blank"
                 rel="noopener"
-                >GitHub</a
+                aria-label="Xians ACP on GitHub"
               >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.74.4-1.26.73-1.55-2.55-.3-5.24-1.28-5.24-5.7 0-1.26.45-2.3 1.2-3.1-.12-.3-.52-1.5.1-3.13 0 0 .98-.32 3.2 1.18a11 11 0 0 1 5.82 0c2.22-1.5 3.2-1.18 3.2-1.18.62 1.63.22 2.83.1 3.13.75.8 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.26 5.68.42.36.78 1.06.78 2.14v3.18c0 .31.2.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
+                  />
+                </svg>
+                <span>GitHub</span>
+              </a>
             </li>
-
           </ul>
         </nav>
       </div>
@@ -189,27 +222,6 @@
                 Embed agents in your SaaS or list them in a marketplace. ACP
                 handles the per-tenant layer underneath.
               </p>
-              <ul class="audience-points" aria-label="What ISVs get">
-                <li>
-                  <strong>Per-tenant isolation.</strong> Separate state,
-                  config, and secrets for each customer.
-                </li>
-                <li>
-                  <strong>Prompt rollouts.</strong> Version and promote
-                  prompts across customer cohorts and environments.
-                </li>
-                <li>
-                  <strong>Per-tenant logs and metrics.</strong> One place to
-                  look when a customer reports an issue.
-                </li>
-                <li>
-                  <strong>One interface.</strong> Chat, webhooks, and
-                  human-in-the-loop tasks reach agents the same way.
-                </li>
-                <li>
-                  <strong>MIT licensed.</strong> Embed it in your product.
-                </li>
-              </ul>
             </article>
 
             <article class="audience-card" data-reveal>
@@ -219,27 +231,6 @@
                 Run agents for your employees, or for your own customers.
                 Self-hosted on your own infrastructure.
               </p>
-              <ul class="audience-points" aria-label="What enterprises get">
-                <li>
-                  <strong>One place</strong> to manage every agent your
-                  teams build, ship, and retire.
-                </li>
-                <li>
-                  <strong>Multi-team isolation</strong> on a shared platform.
-                </li>
-                <li>
-                  <strong>Durable workflows</strong> for long-running
-                  business processes.
-                </li>
-                <li>
-                  <strong>Logs, metrics, traces, and HITL tasks</strong>
-                  built in.
-                </li>
-                <li>
-                  <strong>Self-hosted</strong> in your own cloud or
-                  data centre. Data stays where it is.
-                </li>
-              </ul>
             </article>
           </div>
         </div>
@@ -417,32 +408,391 @@
         </div>
       </section>
 
+      <section class="studio" id="studio">
+        <div class="container">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">Agent Studio</p>
+            <h2>The control plane, with a UI in the box.</h2>
+            <p class="section-lead">
+              Agent Studio is the default UI for Xians ACP &mdash; multi-tenant
+              from day one. Here are some of the controls and operations ACP
+              handles for every tenant, every agent, out of the box.
+            </p>
+          </header>
+
+          <div
+            class="studio-carousel"
+            data-carousel
+            data-reveal
+            aria-roledescription="carousel"
+            aria-label="Agent Studio features"
+          >
+            <div class="studio-carousel-viewport" data-carousel-viewport>
+              <div class="studio-carousel-track" data-carousel-track>
+                <article
+                  class="studio-slide"
+                  data-carousel-slide
+                  aria-roledescription="slide"
+                  aria-label="1 of 8: Built-in UI"
+                >
+                  <div class="studio-slide-copy">
+                    <span class="studio-tag">Built-in UI</span>
+                    <h3>An agent store from day one</h3>
+                    <p>
+                      Agent Studio ships with ACP. Companies go live with a
+                      multi-tenant agent catalog, conversations, and tasks
+                      without designing or maintaining a UI of their own.
+                    </p>
+                  </div>
+                  <figure class="studio-slide-shot">
+                    <div class="studio-shot-chrome" aria-hidden="true">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="studio-slide-shot-frame">
+                      <img
+                        src="img/agent-studio.png"
+                        alt="Agent Studio home: multi-tenant agent catalog with active agents, filters, and a navigation sidebar."
+                        loading="lazy"
+                        width="1870"
+                        height="916"
+                      />
+                    </div>
+                  </figure>
+                </article>
+
+                <article
+                  class="studio-slide"
+                  data-carousel-slide
+                  aria-roledescription="slide"
+                  aria-label="2 of 8: Lifecycle"
+                  aria-hidden="true"
+                >
+                  <div class="studio-slide-copy">
+                    <span class="studio-tag">Lifecycle</span>
+                    <h3>Activate agents from a catalog</h3>
+                    <p>
+                      Browse the Agent Store, see versions and publishers, and
+                      turn agents on for a tenant in one click. ACP tracks
+                      what's published, what's activated, and by whom.
+                    </p>
+                  </div>
+                  <figure class="studio-slide-shot">
+                    <div class="studio-shot-chrome" aria-hidden="true">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="studio-slide-shot-frame">
+                      <img
+                        src="img/agent-store.png"
+                        alt="Agent Store: catalog of agents with versions, publishers, descriptions, and Activate Now actions."
+                        loading="lazy"
+                        width="1262"
+                        height="600"
+                      />
+                    </div>
+                  </figure>
+                </article>
+
+                <article
+                  class="studio-slide"
+                  data-carousel-slide
+                  aria-roledescription="slide"
+                  aria-label="3 of 8: Conversations"
+                  aria-hidden="true"
+                >
+                  <div class="studio-slide-copy">
+                    <span class="studio-tag">Interaction</span>
+                    <h3>Long-running conversations, organised</h3>
+                    <p>
+                      Persistent threads grouped per agent and per tenant. ACP
+                      handles routing, history, and live presence, so users
+                      pick up exactly where they left off.
+                    </p>
+                  </div>
+                  <figure class="studio-slide-shot">
+                    <div class="studio-shot-chrome" aria-hidden="true">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="studio-slide-shot-frame">
+                      <img
+                        src="img/conversations.png"
+                        alt="Conversations view: threads grouped per agent, with suggested prompts and a live-session indicator."
+                        loading="lazy"
+                        width="1512"
+                        height="893"
+                      />
+                    </div>
+                  </figure>
+                </article>
+
+                <article
+                  class="studio-slide"
+                  data-carousel-slide
+                  aria-roledescription="slide"
+                  aria-label="4 of 8: Human-in-the-loop"
+                  aria-hidden="true"
+                >
+                  <div class="studio-slide-copy">
+                    <span class="studio-tag">Human in the loop</span>
+                    <h3>Hand off to humans, cleanly</h3>
+                    <p>
+                      When an agent needs a human, it creates a task. ACP
+                      tracks owners, scope, and status across the org so
+                      hand-offs never fall through the cracks.
+                    </p>
+                  </div>
+                  <figure class="studio-slide-shot">
+                    <div class="studio-shot-chrome" aria-hidden="true">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="studio-slide-shot-frame">
+                      <img
+                        src="img/hitl-tasks.png"
+                        alt="Tasks view: human-in-the-loop tasks with owner, age, status, and a My-tasks / Everyone toggle."
+                        loading="lazy"
+                        width="1474"
+                        height="738"
+                      />
+                    </div>
+                  </figure>
+                </article>
+
+                <article
+                  class="studio-slide"
+                  data-carousel-slide
+                  aria-roledescription="slide"
+                  aria-label="5 of 8: Observability"
+                  aria-hidden="true"
+                >
+                  <div class="studio-slide-copy">
+                    <span class="studio-tag">Observability</span>
+                    <h3>Cost, usage, and business outcomes</h3>
+                    <p>
+                      Track tokens, costs, and any custom KPI per agent and
+                      per tenant. ACP collects samples, computes percentiles,
+                      and groups them by metric type and category.
+                    </p>
+                  </div>
+                  <figure class="studio-slide-shot">
+                    <div class="studio-shot-chrome" aria-hidden="true">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="studio-slide-shot-frame">
+                      <img
+                        src="img/business-metrics.png"
+                        alt="Performance view: aggregate counts, cost metric breakdown with average, min, max, P95, and P99 across agents."
+                        loading="lazy"
+                        width="3014"
+                        height="1586"
+                      />
+                    </div>
+                  </figure>
+                </article>
+
+                <article
+                  class="studio-slide"
+                  data-carousel-slide
+                  aria-roledescription="slide"
+                  aria-label="6 of 8: Activity logs"
+                  aria-hidden="true"
+                >
+                  <div class="studio-slide-copy">
+                    <span class="studio-tag">Observability</span>
+                    <h3>Workflow logs, grouped into streams</h3>
+                    <p>
+                      Every workflow run is logged and grouped into log
+                      streams. Drill into any stream to debug behaviour, with
+                      timestamps, workflow IDs, and tenant context attached.
+                    </p>
+                  </div>
+                  <figure class="studio-slide-shot">
+                    <div class="studio-shot-chrome" aria-hidden="true">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="studio-slide-shot-frame">
+                      <img
+                        src="img/activity-logs.png"
+                        alt="Activity Logs: log streams listed per workflow, each with log counts, timestamps, and a See logs action."
+                        loading="lazy"
+                        width="3004"
+                        height="1504"
+                      />
+                    </div>
+                  </figure>
+                </article>
+
+                <article
+                  class="studio-slide"
+                  data-carousel-slide
+                  aria-roledescription="slide"
+                  aria-label="7 of 8: Users and roles"
+                  aria-hidden="true"
+                >
+                  <div class="studio-slide-copy">
+                    <span class="studio-tag">Multi-tenancy</span>
+                    <h3>Per-tenant users and roles</h3>
+                    <p>
+                      Add users to a tenant, assign Admin or User roles, and
+                      approve participation. Membership and permissions stay
+                      isolated per tenant.
+                    </p>
+                  </div>
+                  <figure class="studio-slide-shot">
+                    <div class="studio-shot-chrome" aria-hidden="true">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="studio-slide-shot-frame">
+                      <img
+                        src="img/users.png"
+                        alt="Users view: tenant participants with name, email, role, and approval state."
+                        loading="lazy"
+                        width="3008"
+                        height="1362"
+                      />
+                    </div>
+                  </figure>
+                </article>
+
+                <article
+                  class="studio-slide"
+                  data-carousel-slide
+                  aria-roledescription="slide"
+                  aria-label="8 of 8: Secrets"
+                  aria-hidden="true"
+                >
+                  <div class="studio-slide-copy">
+                    <span class="studio-tag">Multi-tenancy</span>
+                    <h3>Tenant-scoped secrets</h3>
+                    <p>
+                      Store API tokens and credentials per tenant. Values are
+                      write-only by design &mdash; once saved, they're never
+                      shown again. Rotate by deleting and recreating.
+                    </p>
+                  </div>
+                  <figure class="studio-slide-shot">
+                    <div class="studio-shot-chrome" aria-hidden="true">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="studio-slide-shot-frame">
+                      <img
+                        src="img/secrets.png"
+                        alt="Secrets view: tenant-scoped secrets listed by key, creation date, and creator, with a write-only notice."
+                        loading="lazy"
+                        width="3010"
+                        height="1390"
+                      />
+                    </div>
+                  </figure>
+                </article>
+              </div>
+            </div>
+
+            <div class="studio-carousel-controls">
+              <button
+                class="studio-nav studio-nav-prev"
+                type="button"
+                data-carousel-prev
+                aria-label="Previous slide"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M15 6l-6 6 6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <ol
+                class="studio-dots"
+                data-carousel-dots
+                role="tablist"
+                aria-label="Choose a feature"
+              >
+                <li>
+                  <button
+                    type="button"
+                    data-carousel-go="0"
+                    aria-label="Built-in UI"
+                    aria-selected="true"
+                    class="is-active"
+                  ></button>
+                </li>
+                <li>
+                  <button type="button" data-carousel-go="1" aria-label="Agent Store"></button>
+                </li>
+                <li>
+                  <button type="button" data-carousel-go="2" aria-label="Conversations"></button>
+                </li>
+                <li>
+                  <button type="button" data-carousel-go="3" aria-label="Human-in-the-loop tasks"></button>
+                </li>
+                <li>
+                  <button type="button" data-carousel-go="4" aria-label="Business metrics"></button>
+                </li>
+                <li>
+                  <button type="button" data-carousel-go="5" aria-label="Activity logs"></button>
+                </li>
+                <li>
+                  <button type="button" data-carousel-go="6" aria-label="Users and roles"></button>
+                </li>
+                <li>
+                  <button type="button" data-carousel-go="7" aria-label="Tenant secrets"></button>
+                </li>
+              </ol>
+
+              <button
+                class="studio-nav studio-nav-next"
+                type="button"
+                data-carousel-next
+                aria-label="Next slide"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M9 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="architecture" id="architecture">
         <div class="container">
           <header class="section-head" data-reveal>
             <p class="eyebrow">Architecture</p>
-            <h2>Opinionated in the middle. Open at the edges.</h2>
+            <h2>In your Four plane Architecture, Xians ACP is the Control Plane.</h2>
             <p class="section-lead">
-              ACP sits in the middle. The layers above and below are yours
-              to choose.
+              Modern agentic systems span four planes. Xians ACP owns the
+              control plane &mdash; the other three are yours to shape.
             </p>
           </header>
 
           <div class="arch-stack" data-reveal>
-            <div class="arch-layer arch-up">
+            <div class="arch-layer">
+              <span class="arch-owner">Yours</span>
               <div class="arch-layer-head">
-                <span class="arch-tag">Upward · Interaction</span>
-                <h3>How users reach the agents</h3>
+                <span class="arch-tag">Plane 1 &middot; Interaction</span>
+                <h3>How users and systems reach the agents</h3>
               </div>
               <ul class="arch-pills">
+                <li>Conversations &amp; chat</li>
+                <li>Human-in-the-loop tasks</li>
+                <li>Webhooks &amp; events</li>
                 <li class="default">Agent Studio (default UI)</li>
-                <li>Your own web / mobile UI</li>
-                <li>Chat &amp; messaging channels</li>
-                <li>Webhooks &amp; APIs</li>
+                <li>Your web / mobile UI</li>
               </ul>
               <p class="arch-note">
-                Ships with <strong>Agent Studio</strong> as the default UI.
-                Replace it, or put your own UI on top.
+                Surface agents anywhere your users already work. Ships with
+                <strong>Agent Studio</strong>; bring your own UI on top.
               </p>
             </div>
 
@@ -452,21 +802,22 @@
             </div>
 
             <div class="arch-layer arch-core">
+              <span class="arch-owner arch-owner-core">Xians ACP</span>
               <div class="arch-layer-head">
-                <span class="arch-tag arch-tag-core">Xians ACP · Control plane</span>
-                <h3>The control plane</h3>
+                <span class="arch-tag arch-tag-core">Plane 2 &middot; Control</span>
+                <h3>Where every agent and tenant is governed</h3>
               </div>
               <ul class="arch-pills arch-pills-core">
                 <li>Lifecycle</li>
                 <li>Multi-tenancy</li>
-                <li>Interaction layer</li>
+                <li>Interaction routing</li>
                 <li>Prompt management</li>
                 <li>Observability</li>
                 <li>Business processes</li>
               </ul>
               <p class="arch-note">
                 MIT licensed. Self-hosted. One place for every agent and
-                every tenant.
+                every tenant &mdash; this is the only plane ACP owns.
               </p>
             </div>
 
@@ -475,23 +826,305 @@
               <span></span>
             </div>
 
-            <div class="arch-layer arch-down">
+            <div class="arch-layer">
+              <span class="arch-owner">Yours</span>
               <div class="arch-layer-head">
-                <span class="arch-tag">Downward · Runtime &amp; data</span>
-                <h3>How the agents run</h3>
+                <span class="arch-tag">Plane 3 &middot; Runtime</span>
+                <h3>Where agents actually execute</h3>
               </div>
               <ul class="arch-pills">
                 <li>Any agent framework</li>
                 <li>Any LLM / model provider</li>
-                <li>Your data &amp; integrations</li>
+                <li>MCP tools &amp; servers</li>
                 <li>Your cloud or on-prem</li>
               </ul>
               <p class="arch-note">
-                Pick the runtime, models, and data layer that fit the
+                Pick the frameworks, models, and tooling that fit each
                 problem. ACP doesn't decide for you.
               </p>
             </div>
+
+            <div class="arch-connector" aria-hidden="true">
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="arch-layer">
+              <span class="arch-owner">Yours</span>
+              <div class="arch-layer-head">
+                <span class="arch-tag">Plane 4 &middot; Data</span>
+                <h3>What the agents read and write</h3>
+              </div>
+              <ul class="arch-pills">
+                <li>Integrations &amp; SaaS APIs</li>
+                <li>Internal services</li>
+                <li>Databases &amp; warehouses</li>
+                <li>Vector stores &amp; data platforms</li>
+              </ul>
+              <p class="arch-note">
+                Your data stays where it is. ACP orchestrates access &mdash;
+                it doesn't own the data layer.
+              </p>
+            </div>
           </div>
+        </div>
+      </section>
+
+      <section class="platform" id="platform">
+        <div class="container">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">Out of the box</p>
+            <h2>Non-functional features. Built in. Day one.</h2>
+            <p class="section-lead">
+              Drop ACP between your web server and your agents. You inherit
+              horizontal scalability, zero-incoming-port security, durable
+              fault tolerance, async orchestration, and full observability
+              &mdash; without wiring any of it yourself.
+            </p>
+          </header>
+
+          <figure class="platform-diagram" data-reveal>
+            <img
+              src="img/arch.png"
+              alt="System architecture: a Xians Server (Agent Control Plane) sits between Your Web Server and Your AI Agents. The Web Server connects via the internet to Your Product UI, while Xians Agent Studio offers an optional UI for direct user-agent interaction. The Xians Server connects to internal microservices and exposes a Xians Dev Portal."
+              loading="lazy"
+              width="720"
+              height="405"
+            />
+            <figcaption class="platform-diagram-caption">
+              Xians runs as a dedicated Agent Microservice. Your Web Server
+              talks to it; agents pull work from it on outbound-only
+              connections.
+            </figcaption>
+          </figure>
+
+          <ul class="platform-grid" data-reveal>
+            <li class="platform-card">
+              <span class="platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M3 12h4M17 12h4M9 12h6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                  />
+                  <rect
+                    x="3" y="5" width="4" height="14" rx="1"
+                    fill="none" stroke="currentColor" stroke-width="1.7"
+                  />
+                  <rect
+                    x="10" y="5" width="4" height="14" rx="1"
+                    fill="none" stroke="currentColor" stroke-width="1.7"
+                  />
+                  <rect
+                    x="17" y="5" width="4" height="14" rx="1"
+                    fill="none" stroke="currentColor" stroke-width="1.7"
+                  />
+                </svg>
+              </span>
+              <h3>Auto horizontal scaling</h3>
+              <p>
+                Add or remove agent worker containers at any time. Temporal
+                automatically distributes work &mdash; no orchestrator to
+                rewrite, no service registry to maintain.
+              </p>
+            </li>
+
+            <li class="platform-card">
+              <span class="platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9.5 12.5l2 2 3.5-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <h3>Zero incoming ports</h3>
+              <p>
+                Agents run in a private subnet with outbound-only pull
+                connections. No inbound surface, no firewall holes, no
+                accidental exposure.
+              </p>
+            </li>
+
+            <li class="platform-card">
+              <span class="platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M18 3v4h-4M6 21v-4h4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <h3>Fault tolerance</h3>
+              <p>
+                Built-in retries, timeouts, and durable state. Workflows
+                survive worker restarts, deploys, and infrastructure
+                hiccups &mdash; right where they left off.
+              </p>
+            </li>
+
+            <li class="platform-card">
+              <span class="platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect
+                    x="3" y="4" width="8" height="7" rx="1.2"
+                    fill="none" stroke="currentColor" stroke-width="1.7"
+                  />
+                  <rect
+                    x="13" y="13" width="8" height="7" rx="1.2"
+                    fill="none" stroke="currentColor" stroke-width="1.7"
+                  />
+                  <path
+                    d="M11 7.5h3a2 2 0 0 1 2 2V13M13 16.5h-3a2 2 0 0 1-2-2V11"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <h3>Decoupled by design</h3>
+              <p>
+                Agents focus on business logic. Routing, queues, conversation
+                history, secrets, and observability live in the platform &mdash;
+                not in your agent code.
+              </p>
+            </li>
+
+            <li class="platform-card">
+              <span class="platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M3 7h12M3 12h9M3 17h6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M17 17l3-3-3-3"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <h3>Fully async by default</h3>
+              <p>
+                Even synchronous webhooks are queued and processed
+                asynchronously. Stateless workers, configurable timeouts,
+                massive throughput.
+              </p>
+            </li>
+
+            <li class="platform-card">
+              <span class="platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect
+                    x="3" y="4" width="8" height="7" rx="1.2"
+                    fill="none" stroke="currentColor" stroke-width="1.7"
+                  />
+                  <rect
+                    x="13" y="4" width="8" height="7" rx="1.2"
+                    fill="none" stroke="currentColor" stroke-width="1.7"
+                  />
+                  <rect
+                    x="3" y="13" width="8" height="7" rx="1.2"
+                    fill="none" stroke="currentColor" stroke-width="1.7"
+                  />
+                  <rect
+                    x="13" y="13" width="8" height="7" rx="1.2"
+                    fill="none" stroke="currentColor" stroke-width="1.7"
+                  />
+                </svg>
+              </span>
+              <h3>Multi-tenant isolation</h3>
+              <p>
+                Tenant-scoped state, secrets, prompts, and conversation
+                history with centralised policy. One deployment, many
+                customers or teams.
+              </p>
+            </li>
+
+            <li class="platform-card">
+              <span class="platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle
+                    cx="12" cy="12" r="8"
+                    fill="none" stroke="currentColor" stroke-width="1.7"
+                  />
+                  <path
+                    d="M12 7v5l3 2"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <h3>Durable long-running workflows</h3>
+              <p>
+                Orchestrate multi-step business processes that span minutes,
+                hours, days, or years &mdash; with state managed reliably on
+                Temporal.
+              </p>
+            </li>
+
+            <li class="platform-card">
+              <span class="platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M5 4h11l3 3v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 12l2 2 4-4M8 17h6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <h3>Audit trail &amp; tracing</h3>
+              <p>
+                Every workflow execution is logged with distributed tracing.
+                Cost, performance, and behaviour &mdash; queryable per agent,
+                per tenant.
+              </p>
+            </li>
+          </ul>
         </div>
       </section>
 
