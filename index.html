@@ -6,21 +6,28 @@
     <title>Xians ACP — Open-source Agent Control Plane</title>
     <meta
       name="description"
-      content="Xians ACP is an open-source, MIT-licensed control plane for AI agents. It runs the layer around your agents: tenants, prompts, conversations, webhooks, human tasks, schedules, logs, and metrics. Self-hosted. Agnostic to the agent runtime."
+      content="Xians ACP is an open-source control plane for AI agents. It handles multi-tenancy, conversations, webhooks, prompts, human tasks, scheduling, logs, and metrics. Self-hosted, runtime-agnostic, MIT licensed."
     />
-    <meta name="theme-color" content="#0b0d12" />
+    <meta name="theme-color" content="#F6F3EC" />
 
     <meta property="og:title" content="Xians ACP — Open-source Agent Control Plane" />
     <meta
       property="og:description"
-      content="An open-source control plane for AI agents. Tenants, prompts, conversations, webhooks, human tasks, schedules, logs, and metrics. Self-hosted."
+      content="An open-source control plane for AI agents. Multi-tenancy, conversations, webhooks, prompts, human tasks, scheduling, logs, and metrics. Self-hosted. MIT licensed."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://xiansaiplatform.github.io/website/" />
 
     <link
       rel="icon"
-      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='8' fill='%230b0d12'/><path d='M16 18 L32 32 L16 46 M48 18 L32 32 L48 46' fill='none' stroke='%237c5cff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/></svg>"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='10' fill='%23F6F3EC'/><rect x='8' y='8' width='48' height='48' rx='8' fill='none' stroke='%231B1C18' stroke-width='3'/><path d='M20 22 L30 32 L20 42 M44 22 L34 32 L44 42' fill='none' stroke='%234A6A10' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/></svg>"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
     />
 
     <link rel="stylesheet" href="style.css" />
@@ -33,11 +40,13 @@
       <div class="container header-inner">
         <div class="brand-container">
           <a class="brand" href="#top" aria-label="Xians ACP home">
-            
-            <span class="brand-text">
-              <span class="brand-name">Xians</span>
-              <span class="brand-suffix">ACP</span>
-            </span>
+            <img
+              src="img/xians-logo-white.png"
+              alt="Xians"
+              class="brand-logo"
+              width="120"
+              height="28"
+            />
           </a>
           <a
             class="brand-by"
@@ -74,6 +83,7 @@
             <li><a href="#architecture" data-nav-link>Architecture</a></li>
             <li><a href="#platform" data-nav-link>Platform</a></li>
             <li><a href="#why" data-nav-link>Why ACP</a></li>
+            <li><a href="#editions" data-nav-link>Editions</a></li>
             <li class="nav-divider" role="presentation" aria-hidden="true"></li>
             <li>
               <a
@@ -128,145 +138,167 @@
     </header>
 
     <main id="main">
+      <!-- ===================== Hero ===================== -->
       <section class="hero" id="top">
-        <div class="hero-bg" aria-hidden="true"></div>
         <div class="container hero-inner">
-          <span class="badge" data-reveal>
-            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M12 2 14.6 8.6 21.5 9.2 16.3 13.6 17.9 20.4 12 16.8 6.1 20.4 7.7 13.6 2.5 9.2 9.4 8.6Z"
-                fill="currentColor"
-              />
-            </svg>
-            Open Source · MIT Licensed
-          </span>
-
-          <h1 data-reveal>
-            An open-source <span class="grad-text">control plane</span>
-            <br />for AI agents.
-          </h1>
-
-          <p class="hero-sub" data-reveal>
-            Xians Agent Control Plane (ACP) runs the layer around your agents: tenants, prompts,
-            conversations, webhooks, human tasks, schedules, logs, and
-            metrics. You bring the agents. ACP runs everything else.
-          </p>
-
-          <div class="hero-ctas" data-reveal>
-            <a
-              class="btn btn-primary"
-              href="https://xiansaiplatform.github.io/XiansAi.Docs/"
-              target="_blank"
-              rel="noopener"
-            >
-              Read the Docs
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
+          <div class="hero-copy">
+            <span class="badge" data-reveal>
+              <svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true">
                 <path
-                  d="M5 12h14M13 6l6 6-6 6"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </a>
-            <a
-              class="btn btn-secondary"
-              href="https://github.com/XiansAiPlatform"
-              target="_blank"
-              rel="noopener"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
+                  d="M12 2 14.6 8.6 21.5 9.2 16.3 13.6 17.9 20.4 12 16.8 6.1 20.4 7.7 13.6 2.5 9.2 9.4 8.6Z"
                   fill="currentColor"
-                  d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.74.4-1.26.73-1.55-2.55-.3-5.24-1.28-5.24-5.7 0-1.26.45-2.3 1.2-3.1-.12-.3-.52-1.5.1-3.13 0 0 .98-.32 3.2 1.18a11 11 0 0 1 5.82 0c2.22-1.5 3.2-1.18 3.2-1.18.62 1.63.22 2.83.1 3.13.75.8 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.26 5.68.42.36.78 1.06.78 2.14v3.18c0 .31.2.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
                 />
               </svg>
-              Star on GitHub
-            </a>
+              Open Source · MIT Licensed
+            </span>
+
+            <h1 data-reveal>
+              The <span class="grad-text">control plane</span><br />for AI agents.
+            </h1>
+
+            <p class="hero-sub" data-reveal>
+              Xians ACP handles what surrounds your agents: multi-tenant access,
+              conversations, webhooks, prompts, human tasks, scheduling, logs,
+              and metrics. You build the agents. ACP runs the rest.
+            </p>
+
+            <div class="hero-ctas" data-reveal>
+              <a
+                class="btn btn-primary"
+                href="https://xiansaiplatform.github.io/XiansAi.Docs/"
+                target="_blank"
+                rel="noopener"
+              >
+                Read the Docs
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M5 12h14M13 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+              <a
+                class="btn btn-secondary"
+                href="https://github.com/XiansAiPlatform"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.74.4-1.26.73-1.55-2.55-.3-5.24-1.28-5.24-5.7 0-1.26.45-2.3 1.2-3.1-.12-.3-.52-1.5.1-3.13 0 0 .98-.32 3.2 1.18a11 11 0 0 1 5.82 0c2.22-1.5 3.2-1.18 3.2-1.18.62 1.63.22 2.83.1 3.13.75.8 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.26 5.68.42.36.78 1.06.78 2.14v3.18c0 .31.2.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
+                  />
+                </svg>
+                Star on GitHub
+              </a>
+            </div>
+
+            <p class="hero-tag" data-reveal>
+              Self-hosted. Runtime-agnostic. MIT licensed.
+            </p>
           </div>
 
-          <p class="hero-tag" data-reveal>
-            MIT licensed. Self-hosted. Agnostic to the agent runtime.
-          </p>
+          <div class="hero-illustration" aria-hidden="true" data-reveal>
+            <img
+              src="img/agents/green-wave.png"
+              alt=""
+              width="260"
+              height="260"
+            />
+          </div>
         </div>
       </section>
 
+      <!-- ===================== Audiences ===================== -->
       <section class="audiences" id="audiences">
         <div class="container">
           <header class="section-head" data-reveal>
             <p class="eyebrow">Who uses it</p>
-            <h2>Two kinds of teams use it.</h2>
+            <h2>Built for two kinds of teams.</h2>
             <p class="section-lead">
-              ACP doesn't care whether you sell agents or run them in-house.
-              The control plane is the same either way.
+              Whether you ship agents to customers or run them internally,
+              the control plane works the same way.
             </p>
           </header>
 
           <div class="audience-grid">
             <article class="audience-card" data-reveal>
+              <img
+                src="img/agents/purple-clip.png"
+                alt=""
+                class="audience-card-illustration"
+                aria-hidden="true"
+                loading="lazy"
+                width="88"
+                height="88"
+              />
               <span class="audience-tag">ISVs · Product vendors</span>
               <h3>Selling AI agents to your customers.</h3>
               <p class="audience-lead">
-                Embed agents in your SaaS or list them in a marketplace. ACP
-                handles the per-tenant layer underneath.
+                Embed agents in your SaaS or list them in a marketplace.
+                ACP handles the per-tenant layer underneath so your team
+                stays focused on the agent itself.
               </p>
             </article>
 
             <article class="audience-card" data-reveal>
+              <img
+                src="img/agents/tan.png"
+                alt=""
+                class="audience-card-illustration"
+                aria-hidden="true"
+                loading="lazy"
+                width="88"
+                height="88"
+              />
               <span class="audience-tag">Enterprises</span>
-              <h3>Running AI agents inside your organization.</h3>
+              <h3>Running AI agents inside your organisation.</h3>
               <p class="audience-lead">
-                Run agents for your employees, or for your own customers.
-                Self-hosted on your own infrastructure.
+                Deploy agents for your employees or internal customers.
+                Self-hosted on your own infrastructure, with tenant
+                isolation from day one.
               </p>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- ===================== Capabilities ===================== -->
       <section class="capabilities" id="capabilities">
         <div class="container">
           <header class="section-head" data-reveal>
             <p class="eyebrow">Capabilities</p>
-            <h2>What it does.</h2>
+            <h2>What runs around your agents.</h2>
             <p class="section-lead">
-              ACP runs around your agents. The agent itself can use any
-              framework, any model, and any data layer.
+              ACP wraps your agents with the operational layer they need.
+              The agents themselves can use any framework, any model, any data layer.
             </p>
           </header>
 
           <ul class="cap-grid">
-            <li class="cap-card" data-reveal>
+            <li class="cap-card cap-card-orange" data-reveal>
               <span class="cap-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                  />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="3.5"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                  />
-                </svg>
+                <img
+                  src="img/agents/orange.png"
+                  alt=""
+                  loading="lazy"
+                  width="72"
+                  height="72"
+                />
               </span>
               <h3>Agent lifecycle</h3>
               <p>
@@ -274,22 +306,15 @@
               </p>
             </li>
 
-            <li class="cap-card" data-reveal>
+            <li class="cap-card cap-card-mint" data-reveal>
               <span class="cap-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M4 7a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                  />
-                  <path
-                    d="M10 13a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                  />
-                </svg>
+                <img
+                  src="img/agents/mint.png"
+                  alt=""
+                  loading="lazy"
+                  width="72"
+                  height="72"
+                />
               </span>
               <h3>Multi-tenancy</h3>
               <p>
@@ -298,51 +323,32 @@
               </p>
             </li>
 
-            <li class="cap-card" data-reveal>
+            <li class="cap-card cap-card-pink" data-reveal>
               <span class="cap-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M4 6h12a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3H8l-4 3z"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M9 17h7a4 4 0 0 0 4-4"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                  />
-                </svg>
+                <img
+                  src="img/agents/pink-wave.png"
+                  alt=""
+                  loading="lazy"
+                  width="72"
+                  height="72"
+                />
               </span>
               <h3>Interaction layer</h3>
               <p>
-                One interface for conversations, webhooks, and
-                human-in-the-loop tasks. Every channel reaches the agent the
-                same way.
+                One interface for conversations, webhooks, and human-in-the-loop
+                tasks. Every channel reaches the agent the same way.
               </p>
             </li>
 
-            <li class="cap-card" data-reveal>
+            <li class="cap-card cap-card-purple" data-reveal>
               <span class="cap-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M5 4h11l3 3v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M8 11h8M8 15h6M8 7h5"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                  />
-                </svg>
+                <img
+                  src="img/agents/purple.png"
+                  alt=""
+                  loading="lazy"
+                  width="72"
+                  height="72"
+                />
               </span>
               <h3>Prompts</h3>
               <p>
@@ -351,25 +357,15 @@
               </p>
             </li>
 
-            <li class="cap-card" data-reveal>
+            <li class="cap-card cap-card-tan" data-reveal>
               <span class="cap-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M3 17l5-5 4 4 5-7 4 5"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M3 21h18"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                  />
-                </svg>
+                <img
+                  src="img/agents/tan.png"
+                  alt=""
+                  loading="lazy"
+                  width="72"
+                  height="72"
+                />
               </span>
               <h3>Observability</h3>
               <p>
@@ -378,25 +374,15 @@
               </p>
             </li>
 
-            <li class="cap-card" data-reveal>
+            <li class="cap-card cap-card-green" data-reveal>
               <span class="cap-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="8"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                  />
-                  <path
-                    d="M12 7v5l3 2"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                  />
-                </svg>
+                <img
+                  src="img/agents/pink-clip.png"
+                  alt=""
+                  loading="lazy"
+                  width="72"
+                  height="72"
+                />
               </span>
               <h3>Business processes</h3>
               <p>
@@ -408,15 +394,16 @@
         </div>
       </section>
 
+      <!-- ===================== Agent Studio ===================== -->
       <section class="studio" id="studio">
         <div class="container">
           <header class="section-head" data-reveal>
             <p class="eyebrow">Agent Studio</p>
-            <h2>The control plane, with a UI in the box.</h2>
+            <h2>A full UI, included from day one.</h2>
             <p class="section-lead">
-              Agent Studio is the default UI for Xians ACP &mdash; multi-tenant
-              from day one. Here are some of the controls and operations ACP
-              handles for every tenant, every agent, out of the box.
+              Agent Studio is the built-in UI for Xians ACP. It is multi-tenant
+              from the start. Here is what ACP manages for every tenant and
+              every agent, out of the box.
             </p>
           </header>
 
@@ -439,9 +426,9 @@
                     <span class="studio-tag">Built-in UI</span>
                     <h3>An agent store from day one</h3>
                     <p>
-                      Agent Studio ships with ACP. Companies go live with a
+                      Agent Studio ships with ACP. Teams go live with a
                       multi-tenant agent catalog, conversations, and tasks
-                      without designing or maintaining a UI of their own.
+                      without building a UI of their own.
                     </p>
                   </div>
                   <figure class="studio-slide-shot">
@@ -473,7 +460,7 @@
                     <p>
                       Browse the Agent Store, see versions and publishers, and
                       turn agents on for a tenant in one click. ACP tracks
-                      what's published, what's activated, and by whom.
+                      what is published, what is activated, and by whom.
                     </p>
                   </div>
                   <figure class="studio-slide-shot">
@@ -567,8 +554,8 @@
                     <span class="studio-tag">Observability</span>
                     <h3>Cost, usage, and business outcomes</h3>
                     <p>
-                      Track tokens, costs, and any custom KPI per agent and
-                      per tenant. ACP collects samples, computes percentiles,
+                      Track tokens, costs, and custom KPIs per agent and per
+                      tenant. ACP collects samples, computes percentiles,
                       and groups them by metric type and category.
                     </p>
                   </div>
@@ -664,8 +651,8 @@
                     <h3>Tenant-scoped secrets</h3>
                     <p>
                       Store API tokens and credentials per tenant. Values are
-                      write-only by design &mdash; once saved, they're never
-                      shown again. Rotate by deleting and recreating.
+                      write-only by design. Once saved, they are never shown
+                      again. Rotate by deleting and recreating.
                     </p>
                   </div>
                   <figure class="studio-slide-shot">
@@ -765,14 +752,15 @@
         </div>
       </section>
 
+      <!-- ===================== Architecture ===================== -->
       <section class="architecture" id="architecture">
         <div class="container">
           <header class="section-head" data-reveal>
             <p class="eyebrow">Architecture</p>
-            <h2>In your Four plane Architecture, Xians ACP is the Control Plane.</h2>
+            <h2>Xians ACP is the control plane in your agent stack.</h2>
             <p class="section-lead">
-              Modern agentic systems span four planes. Xians ACP owns the
-              control plane &mdash; the other three are yours to shape.
+              Modern agent systems span four planes. Xians ACP owns the
+              control plane. The other three are yours to shape.
             </p>
           </header>
 
@@ -817,7 +805,7 @@
               </ul>
               <p class="arch-note">
                 MIT licensed. Self-hosted. One place for every agent and
-                every tenant &mdash; this is the only plane ACP owns.
+                every tenant. This is the only plane ACP owns.
               </p>
             </div>
 
@@ -840,7 +828,7 @@
               </ul>
               <p class="arch-note">
                 Pick the frameworks, models, and tooling that fit each
-                problem. ACP doesn't decide for you.
+                problem. ACP does not decide for you.
               </p>
             </div>
 
@@ -862,24 +850,25 @@
                 <li>Vector stores &amp; data platforms</li>
               </ul>
               <p class="arch-note">
-                Your data stays where it is. ACP orchestrates access &mdash;
-                it doesn't own the data layer.
+                Your data stays where it is. ACP orchestrates access. It does
+                not own the data layer.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- ===================== Platform ===================== -->
       <section class="platform" id="platform">
         <div class="container">
           <header class="section-head" data-reveal>
             <p class="eyebrow">Out of the box</p>
-            <h2>Non-functional features. Built in. Day one.</h2>
+            <h2>Production-ready from day one.</h2>
             <p class="section-lead">
               Drop ACP between your web server and your agents. You inherit
               horizontal scalability, zero-incoming-port security, durable
               fault tolerance, async orchestration, and full observability
-              &mdash; without wiring any of it yourself.
+              without wiring any of it yourself.
             </p>
           </header>
 
@@ -892,9 +881,8 @@
               height="405"
             />
             <figcaption class="platform-diagram-caption">
-              Xians runs as a dedicated Agent Microservice. Your Web Server
-              talks to it; agents pull work from it on outbound-only
-              connections.
+              Xians runs as a dedicated agent microservice. Your web server
+              talks to it; agents pull work from it on outbound-only connections.
             </figcaption>
           </figure>
 
@@ -926,8 +914,8 @@
               <h3>Auto horizontal scaling</h3>
               <p>
                 Add or remove agent worker containers at any time. Temporal
-                automatically distributes work &mdash; no orchestrator to
-                rewrite, no service registry to maintain.
+                automatically distributes work. No orchestrator to rewrite,
+                no service registry to maintain.
               </p>
             </li>
 
@@ -983,7 +971,7 @@
               <p>
                 Built-in retries, timeouts, and durable state. Workflows
                 survive worker restarts, deploys, and infrastructure
-                hiccups &mdash; right where they left off.
+                hiccups, right where they left off.
               </p>
             </li>
 
@@ -1010,8 +998,8 @@
               <h3>Decoupled by design</h3>
               <p>
                 Agents focus on business logic. Routing, queues, conversation
-                history, secrets, and observability live in the platform &mdash;
-                not in your agent code.
+                history, secrets, and observability live in the platform, not
+                in your agent code.
               </p>
             </li>
 
@@ -1092,7 +1080,7 @@
               <h3>Durable long-running workflows</h3>
               <p>
                 Orchestrate multi-step business processes that span minutes,
-                hours, days, or years &mdash; with state managed reliably on
+                hours, days, or years, with state managed reliably on
                 Temporal.
               </p>
             </li>
@@ -1120,7 +1108,7 @@
               <h3>Audit trail &amp; tracing</h3>
               <p>
                 Every workflow execution is logged with distributed tracing.
-                Cost, performance, and behaviour &mdash; queryable per agent,
+                Cost, performance, and behaviour are queryable per agent and
                 per tenant.
               </p>
             </li>
@@ -1128,6 +1116,7 @@
         </div>
       </section>
 
+      <!-- ===================== Why ===================== -->
       <section class="why" id="why">
         <div class="container">
           <header class="section-head" data-reveal>
@@ -1164,7 +1153,7 @@
               <h3>Try it locally.</h3>
               <p>
                 The docs walk through the architecture and how to run ACP
-                on your machine.
+                on your machine in minutes.
               </p>
             </div>
             <div class="cta-card-actions">
@@ -1186,13 +1175,95 @@
           </div>
         </div>
       </section>
+      <!-- ===================== Editions ===================== -->
+      <section class="editions" id="editions">
+        <div class="container">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">Editions</p>
+            <h2>Two ways to run Xians ACP.</h2>
+            <p class="section-lead">
+              The code is MIT-licensed for everyone. 99x adds a Commercial
+              Support subscription for teams that need SLAs, security
+              assurances, and a named engineering partner.
+            </p>
+          </header>
+
+          <div class="editions-grid">
+            <article class="edition-card" data-reveal>
+              <div class="edition-card-head">
+                <span class="edition-badge edition-badge-community">Community</span>
+                <h3>MIT · Free forever</h3>
+                <p class="edition-tagline">
+                  Self-host the full platform. No usage caps, no per-seat fees,
+                  no lock-in.
+                </p>
+              </div>
+              <ul class="edition-features">
+                <li>Complete Xians ACP platform</li>
+                <li>Agent Studio built-in UI</li>
+                <li>Multi-tenancy, observability, HITL</li>
+                <li>Community forum &amp; GitHub issues</li>
+                <li>Self-managed upgrades</li>
+              </ul>
+              <div class="edition-cta">
+                <a
+                  class="btn btn-secondary"
+                  href="https://xiansaiplatform.github.io/XiansAi.Docs/"
+                  target="_blank"
+                  rel="noopener"
+                >Read the Docs</a>
+                <a
+                  class="btn btn-ghost"
+                  href="https://github.com/XiansAiPlatform"
+                  target="_blank"
+                  rel="noopener"
+                >GitHub</a>
+              </div>
+            </article>
+
+            <article class="edition-card edition-card-commercial" data-reveal>
+              <div class="edition-card-head">
+                <span class="edition-badge edition-badge-commercial">Commercial Support</span>
+                <h3>Backed by 99x</h3>
+                <p class="edition-tagline">
+                  The same MIT code, with 99x engineering standing behind it
+                  under a support &amp; assurance subscription.
+                </p>
+              </div>
+              <ul class="edition-features edition-features-check">
+                <li>Priority roadmap input &amp; feature requests</li>
+                <li>Named-contact support with response-time SLAs</li>
+                <li>Guaranteed critical hotfix &amp; backport SLAs</li>
+                <li>Continuous security scanning &amp; CVE advisories</li>
+                <li>Dependency upkeep &amp; hardened LTS builds</li>
+                <li>Supply-chain governance: reviewed commits, signed releases</li>
+              </ul>
+              <div class="edition-cta">
+                <a
+                  class="btn btn-primary"
+                  href="commercial.html"
+                >See what's included</a>
+                <a
+                  class="btn btn-ghost"
+                  href="mailto:hello@99x.io"
+                >Talk to us</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-brand">
-          <span class="brand-name">Xians</span>
-          <span class="brand-suffix">ACP</span>
+          <img
+            src="img/xians-logo-white.png"
+            alt="Xians ACP"
+            class="footer-logo"
+            width="96"
+            height="24"
+          />
           <a
             class="brand-by brand-by-footer"
             href="https://99x.io"
@@ -1209,7 +1280,7 @@
               height="17"
             />
           </a>
-          <span class="footer-license">· MIT Licensed</span>
+          <span class="footer-license">MIT Licensed</span>
         </div>
         <nav class="footer-links" aria-label="Footer">
           <a
@@ -1224,6 +1295,7 @@
             rel="noopener"
             >GitHub</a
           >
+          <a href="commercial.html">Commercial Support</a>
         </nav>
         <p class="footer-copy">
           &copy; <span data-year></span> Xians ACP contributors.
