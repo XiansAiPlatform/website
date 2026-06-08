@@ -152,7 +152,7 @@
             <strong>Illustrative, non-binding sample.</strong> This document is
             a template shown for reference only. It is not an offer, quote, or
             contract, and creates no obligation on any party. Every term below
-            &mdash; including SLAs, hours, fees, and legal clauses &mdash; is a
+            - including SLAs, hours, fees, and legal clauses - is a
             placeholder that is negotiated and finalised per engagement. It is
             not legal advice. Bracketed values such as <code>[Customer]</code>
             are completed during contracting.
@@ -217,7 +217,7 @@
             <dd>
               The time between the Customer logging a valid support request and
               a Provider engineer acknowledging it and beginning active work
-              &mdash; not an automated acknowledgement.
+              - not an automated acknowledgement.
             </dd>
 
             <dt>Resolution / Workaround</dt>
@@ -271,25 +271,25 @@
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">S1 &mdash; Critical</th>
+                  <th scope="row">S1 - Critical</th>
                   <td>Production down, data loss, or security breach. No workaround.</td>
                   <td>Same business day</td>
                   <td>Within 1 hour</td>
                 </tr>
                 <tr>
-                  <th scope="row">S2 &mdash; High</th>
+                  <th scope="row">S2 - High</th>
                   <td>Major degradation; workaround exists but is painful.</td>
                   <td>Next business day</td>
                   <td>Within 4 hours</td>
                 </tr>
                 <tr>
-                  <th scope="row">S3 &mdash; Medium</th>
+                  <th scope="row">S3 - Medium</th>
                   <td>Minor impact; a reasonable workaround exists.</td>
                   <td>2 business days</td>
                   <td>1 business day</td>
                 </tr>
                 <tr>
-                  <th scope="row">S4 &mdash; Low</th>
+                  <th scope="row">S4 - Low</th>
                   <td>Questions, documentation, and feature requests.</td>
                   <td>3 business days</td>
                   <td>2 business days</td>
@@ -332,7 +332,7 @@
 
         <!-- 5. Maintenance -->
         <section class="contract-clause">
-          <h2><span class="contract-num">5</span> Maintenance, dependencies &amp; LTS</h2>
+          <h2><span class="contract-num">5</span> Maintenance, dependencies, LTS &amp; migration</h2>
           <p>
             The Provider maintains a Long-Term Support (LTS) build line for the
             Software, including timely dependency updates, compatibility
@@ -340,6 +340,26 @@
             patches are backported to the Customer's supported version for the
             duration of the Term, so the Customer is not forced to take a major
             upgrade to receive a fix.
+          </p>
+          <p><strong>Backward compatibility within an LTS major version.</strong>
+            Within a given LTS major version, patch and minor releases introduce
+            no breaking changes to public APIs or documented behaviour without
+            prior notice and a deprecation period of at least
+            <span class="contract-placeholder">[one minor release cycle]</span>.
+          </p>
+          <p><strong>Migration path across major versions.</strong>
+            Before a new LTS major version is released, the Provider publishes a
+            tested migration guide covering all breaking changes, recommended
+            upgrade steps, and any tooling to assist the transition. The Customer
+            will not be left without a clear, documented path from their current
+            supported version to the next.
+          </p>
+          <p><strong>Deprecation notice.</strong>
+            Features or APIs scheduled for removal in the next major LTS version
+            are flagged as deprecated at least
+            <span class="contract-placeholder">[one full LTS release cycle]</span>
+            in advance, giving the Customer time to plan the transition without
+            urgency.
           </p>
         </section>
 
@@ -412,7 +432,7 @@
                 </tr>
                 <tr>
                   <th scope="row">Quarterly business review &amp; roadmap seat</th>
-                  <td>&mdash;</td>
+                  <td>-</td>
                   <td>Yes</td>
                 </tr>
                 <tr>
@@ -430,9 +450,9 @@
             from support &amp; advisory hours.
           </p>
           <p>
-            Work beyond the included hours &mdash; such as custom feature
+            Work beyond the included hours - such as custom feature
             development, implementation, data migration, or bespoke
-            integrations &mdash; is provided as Additional Services under a
+            integrations - is provided as Additional Services under a
             separate statement of work and is billed separately at
             <span class="contract-placeholder">[rate]</span>.
           </p>
@@ -558,7 +578,7 @@
             <h3>Want a real proposal?</h3>
             <p>
               This is only a sample. Talk to 99x and we will tailor an
-              agreement &mdash; SLAs, hours, and fees &mdash; to your
+              agreement - SLAs, hours, and fees - to your
               deployment.
             </p>
           </div>
