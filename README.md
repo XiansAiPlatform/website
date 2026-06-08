@@ -46,6 +46,7 @@ Then open [http://localhost:8000](http://localhost:8000) in your browser.
 .
 ├── index.html          # Main page
 ├── commercial.html     # Commercial Support detail page
+├── support-contract.html  # Non-binding sample support agreement
 ├── style.css           # All styles
 ├── script.js           # Interactive behaviour (carousel, scroll-spy, reveal)
 ├── img/
