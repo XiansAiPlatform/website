@@ -1,4 +1,4 @@
-# Xians ACP — Marketing Website
+# Xians ACP — Public Website
 
 The marketing website for **Xians Agent Control Plane (ACP)** — an open-source, MIT-licensed control plane for AI agents. Xians ACP runs the layer around your agents: tenants, prompts, conversations, webhooks, human tasks, schedules, logs, and metrics. Self-hosted, and agnostic to the agent runtime.
 
